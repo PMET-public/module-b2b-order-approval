@@ -64,7 +64,7 @@ class CustomerAttributes
             'sort_order' => 1000,
             'position' => 1000,
             'system' => 0,
-            'default' => '5000'
+            'default' => '1000'
         ]);
 
         $attribute = $customerSetup->getEavConfig()->getAttribute(Customer::ENTITY, 'order_approval_amount')
