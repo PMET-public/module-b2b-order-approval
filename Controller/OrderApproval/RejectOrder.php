@@ -1,0 +1,40 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: jbritts
+ * Date: 11/10/16
+ * Time: 10:22 AM
+ */
+
+namespace MagentoEse\B2BOrderApproval\Controller\OrderApproval;
+
+class RejectOrder extends \Magento\Framework\App\Action\Action
+{
+    /** @var \Magento\Framework\View\Result\PageFactory  */
+    protected $resultPageFactory;
+    private $orderFactory;
+    public function __construct(
+        \Magento\Framework\App\Action\Context $context,
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
+        \Magento\Sales\Model\OrderFactory $orderFactory
+
+    ) {
+        parent::__construct($context);
+        $this->resultPageFactory = $resultPageFactory;
+        $this->orderFactory = $orderFactory;
+
+    }
+
+    public function execute()
+    {
+        $orderId = $this->getRequest()->getParam('order_id');
+        $comments = $this->getRequest()->getParam('comments');
+        $order = $this->orderFactory->create();
+        $order->load($orderId);
+        $order->setStatus('rejected');
+        $order->setState('canceled');
+        $order->addStatusHistoryComment(__('Your order has been approved: ').$comments)->setIsVisibleOnFront(true)->setIsCustomerNotified();
+        $order->save();
+        $this->_redirect('sales/order/view/order_id/'.$orderId);
+    }
+}

@@ -49,5 +49,13 @@ class ApproveRejectButtons extends \Magento\Framework\View\Element\Template
         }
 
     }
+    public function getApprovalUrl($order)
+    {
+        return $this->getUrl('approval/OrderApproval/ApproveOrder', ['order_id' => $order->getId()]);
+    }
+    public function getRejectionUrl($order)
+    {
+        return $this->getUrl('approval/OrderApproval/RejectOrder', ['order_id' => $order->getId()]);
+    }
 
 }

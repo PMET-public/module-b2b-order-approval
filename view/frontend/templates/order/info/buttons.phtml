@@ -7,14 +7,92 @@
 // @codingStandardsIgnoreFile
 
 ?>
+
 <div class="actions">
     <?php  if($block->needsApproval() && $block->isApprover()) :?>
+        <?php  $_order = $block->getOrder() ?>
 
-    <a href="#" >
-        <span><?php /* @escapeNotVerified */ echo __('Approve') ?></span>
-    </a>
-    <a href="#" >
-        <span><?php /* @escapeNotVerified */ echo __('Reject') ?></span>
-    </a>
+        <!-- Approval Modal -->
+        <div id="approveModal">
+            <div><?php echo __('Comment') ?></div>
+            <form id="ApproveForm" action="<?php /* @escapeNotVerified */ echo
+            $block->getApprovalUrl($_order);
+            ?>">
+                <textarea name="comments"></textarea>
+            </form>
+        </div>
+        <script>
+            require(
+                [
+                    'jquery',
+                    'Magento_Ui/js/modal/modal'
+                ],
+                function($,modal) {
+                    var options = {
+                        type: 'popup',
+                        responsive: true,
+                        innerScroll: true,
+                        title: $.mage.__('Approve Order'),
+                        buttons: [{
+                            text: $.mage.__('Approve'),
+                            class: '',
+                            click: function () {
+                                $('#ApproveForm').submit();  this.closeModal();
+                            }
+                        }]
+                    };
+                    var popup = modal(options, $('#approveModal'));
+                    $("#openApprove").on("click",function(){
+                        $('#approveModal').modal('openModal');
+                    });
+                }
+            );
+        </script>
+
+
+        <!-- Reject Modal -->
+        <div id="rejectModal">
+            <div><?php echo __('Comment') ?></div>
+            <form id="RejectForm" action="<?php /* @escapeNotVerified */ echo
+            $block->getRejectionUrl($_order);
+            ?>">
+                <textarea name="comments"></textarea>
+            </form>
+        </div>
+        <script>
+            require(
+                [
+                    'jquery',
+                    'Magento_Ui/js/modal/modal'
+                ],
+                function($,modal) {
+                    var options = {
+                        type: 'popup',
+                        responsive: true,
+                        innerScroll: true,
+                        title: $.mage.__('Reject Order'),
+                        buttons: [{
+                            text: $.mage.__('Reject'),
+                            class: '',
+                            click: function () {
+                                $('#RejectForm').submit();  this.closeModal();
+                            }
+                        }]
+                    };
+                    var popup = modal(options, $('#rejectModal'));
+                    $("#openReject").on("click",function(){
+                        $('#rejectModal').modal('openModal');
+                    });
+                }
+            );
+        </script>
+
+        <a id="openApprove">
+            <span><?php /* @escapeNotVerified */ echo __('Approve') ?></span>
+        </a>
+
+        <a id="openReject">
+            <span><?php /* @escapeNotVerified */ echo __('Reject') ?></span>
+        </a>
     <?php endif ?>
 </div>
