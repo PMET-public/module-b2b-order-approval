@@ -1,10 +1,10 @@
-email,order_approval_amount
-ebenes@thelumastory.com,2000
-ckramer@thelumastory.com,2000
-gcostanza@thelumastory.com,2000
-nhuff@thelumastory.com,2000
-dhuff@thelumastory.com,2000
-rdoback@thelumastory.com,2000
-pbeesly@thelumastory.com,2000
-shudson@thelumastory.com,2000
-kkapoor@thelumastory.com,2000
+firstname,lastname,email,order_approval_amount,_website,created_in
+Elaine,Benes,ebenes@thelumastory.com,2000,base,Default Store View
+Cosmo,Kramer,ckramer@thelumastory.com,2000,base,Default Store View
+George,Costanza,gcostanza@thelumastory.com,2000,base,Default Store View
+Nancy,Huff,nhuff@thelumastory.com,2000,base,Default Store View
+Derek,Huff,dhuff@thelumastory.com,2000,base,Default Store View
+Robert,Doback,rdoback@thelumastory.com,2000,base,Default Store View
+Pam,Beesly,pbeesly@thelumastory.com,2000,base,Default Store View
+Stanley,Hudson,shudson@thelumastory.com,2000,base,Default Store View
+Kelly,Kapoor,kkapoor@thelumastory.com,2000,base,Default Store View

@@ -16,8 +16,7 @@
             <module name="Magento_CompanyCredit"/>
             <module name="Magento_CatalogPermissions"/>
             <module name="MagentoEse_B2bAdminConfigurations"/>
-            <module name="MagentoEse_B2bSampleData"/>
-            <module name="MagentoEse_B2bSampleData"/>
+            <module name="MagentoEse_B2BSampleData"/>
             <module name="FireGento_FastSimpleImport2"/>
         </sequence>
     </module>
