@@ -1,7 +1,7 @@
 <?php
 
 
-namespace MagentoEse\B2BOrderApproval\Observer\Sales;
+namespace MagentoEse\B2bOrderApproval\Observer\Sales;
 
 
 class FlagOrderApproval implements \Magento\Framework\Event\ObserverInterface {

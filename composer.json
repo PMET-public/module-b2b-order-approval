@@ -2,12 +2,13 @@
     "name": "magentoese/module-b2b-order-approval",
     "type": "magento2-module",
     "require": {
-        "magento/framework": "*"
+        "magento/framework": "*",
+        "firegento/fastsimpleimport2": "*"
     },
     "autoload": {
         "files": [ "registration.php" ],
         "psr-4": {
-            "MagentoEse\\B2BOrderApproval\\": ""
+            "MagentoEse\\B2bOrderApproval\\": ""
         }
     }
 }

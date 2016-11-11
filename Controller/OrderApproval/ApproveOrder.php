@@ -6,7 +6,7 @@
  * Time: 10:22 AM
  */
 
-namespace MagentoEse\B2BOrderApproval\Controller\OrderApproval;
+namespace MagentoEse\B2bOrderApproval\Controller\OrderApproval;
 
 class ApproveOrder extends \Magento\Framework\App\Action\Action
 {

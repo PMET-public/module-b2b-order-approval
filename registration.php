@@ -6,4 +6,4 @@
 
 use \Magento\Framework\Component\ComponentRegistrar;
 
-ComponentRegistrar::register(ComponentRegistrar::MODULE, 'MagentoEse_B2BOrderApproval', __DIR__);
+ComponentRegistrar::register(ComponentRegistrar::MODULE, 'MagentoEse_B2bOrderApproval', __DIR__);

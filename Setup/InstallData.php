@@ -3,7 +3,7 @@
  * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace MagentoEse\B2BOrderApproval\Setup;
+namespace MagentoEse\B2bOrderApproval\Setup;
 
 use Magento\Framework\Setup;
 

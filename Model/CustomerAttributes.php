@@ -1,6 +1,6 @@
 <?php
 
-namespace MagentoEse\B2BOrderApproval\Model;
+namespace MagentoEse\B2bOrderApproval\Model;
 
 
 use Magento\Customer\Setup\CustomerSetupFactory;
@@ -63,8 +63,7 @@ class CustomerAttributes
             'user_defined' => true,
             'sort_order' => 1000,
             'position' => 1000,
-            'system' => 0,
-            'default' => '1000'
+            'system' => 0
         ]);
 
         $attribute = $customerSetup->getEavConfig()->getAttribute(Customer::ENTITY, 'order_approval_amount')

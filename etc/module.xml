@@ -6,7 +6,7 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="MagentoEse_B2BOrderApproval" setup_version="0.0.1">
+    <module name="MagentoEse_B2bOrderApproval" setup_version="0.0.1">
         <sequence>
             <module name="Magento_B2b"/>
             <module name="Magento_Company"/>
@@ -16,6 +16,9 @@
             <module name="Magento_CompanyCredit"/>
             <module name="Magento_CatalogPermissions"/>
             <module name="MagentoEse_B2bAdminConfigurations"/>
+            <module name="MagentoEse_B2bSampleData"/>
+            <module name="MagentoEse_B2bSampleData"/>
+            <module name="FireGento_FastSimpleImport2"/>
         </sequence>
     </module>
 </config>

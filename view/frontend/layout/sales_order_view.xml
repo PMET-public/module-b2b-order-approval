@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
     <referenceContainer name="page.main.title">
-        <block class="MagentoEse\B2BOrderApproval\Block\ApproveRejectButtons" template="order/info/buttons.phtml" before="sales.order.info.buttons"/>
+        <block class="MagentoEse\B2bOrderApproval\Block\ApproveRejectButtons" template="order/info/buttons.phtml" before="sales.order.info.buttons"/>
     </referenceContainer>
 </page>

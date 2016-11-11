@@ -1,5 +1,5 @@
 <?php
-namespace MagentoEse\B2BOrderApproval\Block;
+namespace MagentoEse\B2bOrderApproval\Block;
 
 class ApproveRejectButtons extends \Magento\Framework\View\Element\Template
 {
