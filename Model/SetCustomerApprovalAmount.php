@@ -14,11 +14,11 @@ class SetCustomerApprovalAmount
 {
     protected $fixtureManager;
     protected $csvReader;
-    protected $objectManager;
+    protected $customerFactory;
 
     public function __construct(
         SampleDataContext $sampleDataContext,
-        \Magento\Framework\ObjectManagerInterface $objectManager,
+        \Magento\Customer\Model\CustomerFactory $customerFactory,
         \Magento\Framework\App\State $appState
     ) {
         try {
@@ -28,7 +28,7 @@ class SetCustomerApprovalAmount
         }
         $this->fixtureManager = $sampleDataContext->getFixtureManager();
         $this->csvReader = $sampleDataContext->getCsvReader();
-        $this->objectManager=$objectManager;
+        $this->customerFactory=$customerFactory;
     }
 
     public function install(array $customerFixtures)
@@ -44,20 +44,17 @@ class SetCustomerApprovalAmount
             $header = array_shift($rows);
 
             foreach ($rows as $row) {
-                $_productsArray[] = array_combine($header, $row);
+                $customerArray[] = array_combine($header, $row);
             }
-            $this->importerModel = $this->objectManager->create('FireGento\FastSimpleImport2\Model\Importer');
-            $this->importerModel->setEntityCode('customer_composite');
-            $this->importerModel->setValidationStrategy('validation-skip-errors');
-            try {
-                $this->importerModel->processImport($_productsArray);
-            } catch (\Exception $e) {
-                print_r($e->getMessage());
+            foreach($customerArray as $customerData){
+                $customer = $this->customerFactory->create();
+                $customer->setWebsiteId(1);
+                $customer->loadByEmail($customerData['email']);
+                $customer->setData('order_approval_amount',$customerData['order_approval_amount']);
+                $customer->save();
             }
 
-            print_r($this->importerModel->getLogTrace());
-            print_r($this->importerModel->getErrorMessages());
-            unset ($_productsArray);
+            unset ($customerArray);
         }
 
     }

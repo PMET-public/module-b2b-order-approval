@@ -33,7 +33,7 @@ class RejectOrder extends \Magento\Framework\App\Action\Action
         $order->load($orderId);
         $order->setStatus('rejected');
         $order->setState('canceled');
-        $order->addStatusHistoryComment(__('Your order has been approved: ').$comments)->setIsVisibleOnFront(true)->setIsCustomerNotified();
+        $order->addStatusHistoryComment(__('Your order has been rejected: ').$comments)->setIsVisibleOnFront(true)->setIsCustomerNotified();
         $order->save();
         $this->_redirect('sales/order/view/order_id/'.$orderId);
     }
