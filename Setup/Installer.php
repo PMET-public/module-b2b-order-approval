@@ -36,7 +36,7 @@ class Installer implements Setup\SampleData\InstallerInterface
 
     public function install()
     {
-        $this->customerAttributeSetup->install();
+        //$this->customerAttributeSetup->install();
         $this->setCustomerApprovalAmount->install(['MagentoEse_B2bOrderApproval::fixtures/0.0.1_customerUpdate.csv']);
         $this->orderStatus->install();
     }
