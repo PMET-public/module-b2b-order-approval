@@ -19,7 +19,7 @@ class InstallData implements Setup\InstallDataInterface
      */
     protected $installer;
 
-    public function __construct(Setup\SampleData\Executor $executor, Installer $installer)
+    public function __construct(\Magento\Framework\Setup\SampleData\Executor $executor, Installer $installer)
     {
         $this->executor = $executor;
         $this->installer = $installer;
@@ -28,7 +28,7 @@ class InstallData implements Setup\InstallDataInterface
     /**
      * {@inheritdoc}
      */
-    public function install(Setup\ModuleDataSetupInterface $setup, Setup\ModuleContextInterface $moduleContext)
+    public function install(\Magento\Framework\Setup\ModuleDataSetupInterface $setup, \Magento\Framework\Setup\ModuleContextInterface $moduleContext)
     {
         $this->executor->exec($this->installer);
     }
