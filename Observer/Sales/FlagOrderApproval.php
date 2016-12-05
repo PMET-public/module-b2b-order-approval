@@ -41,9 +41,5 @@ class FlagOrderApproval implements \Magento\Framework\Event\ObserverInterface {
                 }
             }
         }
-
-
-        $t=1;
-
     }
 }
