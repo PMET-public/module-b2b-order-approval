@@ -71,7 +71,7 @@ class CustomerAttributes
                 'attribute_set_id' => $attributeSetId,
                 'attribute_group_id' => $attributeGroupId,
                 'used_in_forms' => ['adminhtml_customer'],
-                'validate_rules' => 'a:1:{s:16:"input_validation";s:7:"numeric";}'
+                'validate_rules' => '{"input_validation":"numeric"}'
             ]);
 
         $attribute->save();
