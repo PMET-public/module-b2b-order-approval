@@ -63,8 +63,13 @@ class CustomerAttributes
             'user_defined' => true,
             'sort_order' => 1000,
             'position' => 1000,
-            'system' => 0
+            'system' => 0,
+            'attribute_set_id' => $attributeSetId,
+            'attribute_group_id' => $attributeGroupId,
+            'used_in_forms' => ['adminhtml_customer'],
+            'validate_rules' => '{"input_validation":"numeric"}'
         ]);
+
 
         $attribute = $customerSetup->getEavConfig()->getAttribute(Customer::ENTITY, 'order_approval_amount')
             ->addData([
@@ -73,8 +78,8 @@ class CustomerAttributes
                 'used_in_forms' => ['adminhtml_customer'],
                 'validate_rules' => '{"input_validation":"numeric"}'
             ]);
-
-        $attribute->save();
+        /*This save stopped working with current commit. Not critical but may want to add later
+        $attribute->save();*/
 
 
     }
