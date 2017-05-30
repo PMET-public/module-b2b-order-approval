@@ -48,10 +48,14 @@ class SetCustomerApprovalAmount
             }
             foreach($customerArray as $customerData){
                 $customer = $this->customerFactory->create();
-                $customer->setWebsiteId(1);
+                //$customer->setWebsiteId(1);
                 $customer->loadByEmail($customerData['email']);
-                $customer->setData('order_approval_amount',$customerData['order_approval_amount']);
+                $customerData = $customer->getDataModel();
+                $customerData->setCustomAttribute('order_approval_amount',$customerData['order_approval_amount']);
+                $customer->updateData($customerData);
                 $customer->save();
+                //$customer->setData('order_approval_amount',$customerData['order_approval_amount']);
+                //$customer->save();
             }
 
             unset ($customerArray);
