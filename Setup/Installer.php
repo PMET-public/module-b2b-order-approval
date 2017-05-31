@@ -14,7 +14,7 @@ class Installer implements Setup\SampleData\InstallerInterface
      */
     protected $customerAttributeSetup;
     /**
-     * @var \MagentoEse\B2BOrderApproval\Model\SetCustomerApprovalAmount
+     * @var \MagentoEse\B2BOrderApproval\Model\Customers
      */
     protected $setCustomerApprovalAmount;
     /**
@@ -25,7 +25,7 @@ class Installer implements Setup\SampleData\InstallerInterface
 
     public function __construct(
         \MagentoEse\B2bOrderApproval\Model\CustomerAttributes $customerAttributeSetup,
-        \MagentoEse\B2bOrderApproval\Model\SetCustomerApprovalAmount $setCustomerApprovalAmount,
+        \MagentoEse\B2bOrderApproval\Model\Customers $setCustomerApprovalAmount,
         \MagentoEse\B2bOrderApproval\Model\OrderStatus $orderStatus
     ) {
         $this->customerAttributeSetup = $customerAttributeSetup;
