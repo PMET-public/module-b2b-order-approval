@@ -31,13 +31,15 @@ class Installer implements Setup\SampleData\InstallerInterface
         $this->customerAttributeSetup = $customerAttributeSetup;
         $this->setCustomerApprovalAmount = $setCustomerApprovalAmount;
         $this->orderStatus = $orderStatus;
+
     }
 
 
     public function install()
     {
         $this->customerAttributeSetup->install();
-        $this->setCustomerApprovalAmount->install(['MagentoEse_B2bOrderApproval::fixtures/0.0.1_customerUpdate.csv']);
+        //leave this out untill updating issue resolved, level can be added manually
+        //$this->setCustomerApprovalAmount->install(['MagentoEse_B2bOrderApproval::fixtures/0.0.1_customerUpdate.csv']);
         $this->orderStatus->install();
     }
 }
