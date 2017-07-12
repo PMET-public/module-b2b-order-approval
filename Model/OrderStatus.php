@@ -7,8 +7,15 @@ namespace MagentoEse\B2bOrderApproval\Model;
 
 class OrderStatus
 {
+    /**
+     * @var \Magento\Sales\Model\Order\StatusFactory
+     */
     protected $statusFactory;
 
+    /**
+     * OrderStatus constructor.
+     * @param \Magento\Sales\Model\Order\StatusFactory $statusFactory
+     */
     public function __construct(\Magento\Sales\Model\Order\StatusFactory $statusFactory)
     {
         $this->statusFactory = $statusFactory;

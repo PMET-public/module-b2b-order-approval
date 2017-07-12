@@ -10,9 +10,28 @@ namespace MagentoEse\B2bOrderApproval\Controller\OrderApproval;
 
 class ApproveOrder extends \Magento\Framework\App\Action\Action
 {
-    /** @var \Magento\Framework\View\Result\PageFactory  */
+
+    /**
+     * @var \Magento\Framework\App\Action\Context
+     */
+    protected $context;
+
+    /**
+     * @var \Magento\Framework\View\Result\PageFactory
+     */
     protected $resultPageFactory;
-    private $orderFactory;
+
+    /**
+     * @var \Magento\Sales\Model\OrderFactory
+     */
+    protected $orderFactory;
+
+    /**
+     * ApproveOrder constructor.
+     * @param \Magento\Framework\App\Action\Context $context
+     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * @param \Magento\Sales\Model\OrderFactory $orderFactory
+     */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,

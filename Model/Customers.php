@@ -6,14 +6,34 @@
  * Time: 10:40 AM
  */
 namespace MagentoEse\B2bOrderApproval\Model;
-use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
+
 class Customers
 {
-    protected $fixtureManager;
-    protected $csvReader;
+
+    /**
+     * @var \Magento\Framework\Setup\SampleData\Context
+     */
+    protected $sampleDataContext;
+
+    /**
+     * @var \Magento\Framework\App\State
+     */
+    protected $appState;
+
+    /**
+     * @var \Magento\Customer\Api\CustomerRepositoryInterface
+     */
     protected $customerRepository;
+
+
+    /**
+     * Customers constructor.
+     * @param \Magento\Framework\Setup\SampleData\Context $sampleDataContext
+     * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
+     * @param \Magento\Framework\App\State $appState
+     */
     public function __construct(
-        SampleDataContext $sampleDataContext,
+        \Magento\Framework\Setup\SampleData\Context $sampleDataContext,
         \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,
         \Magento\Framework\App\State $appState
     ) {
@@ -26,6 +46,8 @@ class Customers
         $this->csvReader = $sampleDataContext->getCsvReader();
         $this->customerRepository=$customerRepository;
     }
+
+
     public function install(array $customerFixtures)
     {
         foreach ($customerFixtures as $fileName) {

@@ -5,15 +5,13 @@ namespace MagentoEse\B2bOrderApproval\Model;
 
 use Magento\Customer\Setup\CustomerSetupFactory;
 use Magento\Customer\Model\Customer;
-use Magento\Eav\Model\Entity\Attribute\Set as AttributeSet;
 use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 
-/**
- * @codeCoverageIgnore
- */
+
 class CustomerAttributes
 {
+
 
     /**
      * @var CustomerSetupFactory
@@ -23,10 +21,19 @@ class CustomerAttributes
     /**
      * @var AttributeSetFactory
      */
-    private $attributeSetFactory;
+    protected $attributeSetFactory;
 
+    /**
+     * @var ModuleDataSetupInterface
+     */
     protected $setup;
-    protected $context;
+
+    /**
+     * CustomerAttributes constructor.
+     * @param CustomerSetupFactory $customerSetupFactory
+     * @param AttributeSetFactory $attributeSetFactory
+     * @param ModuleDataSetupInterface $setup
+     */
     public function __construct(
         CustomerSetupFactory $customerSetupFactory,
         AttributeSetFactory $attributeSetFactory,
@@ -44,16 +51,11 @@ class CustomerAttributes
     public function install()
     {
 
-        /** @var CustomerSetup $customerSetup */
         $customerSetup = $this->customerSetupFactory->create(['setup' => $this->setup]);
-
         $customerEntity = $customerSetup->getEavConfig()->getEntityType('customer');
         $attributeSetId = $customerEntity->getDefaultAttributeSetId();
-
-        /** @var $attributeSet AttributeSet */
         $attributeSet = $this->attributeSetFactory->create();
         $attributeGroupId = $attributeSet->getDefaultGroupId($attributeSetId);
-
         $customerSetup->addAttribute(Customer::ENTITY, 'order_approval_amount', [
             'type' => 'varchar',
             'label' => 'Require approval for orders over this amount',

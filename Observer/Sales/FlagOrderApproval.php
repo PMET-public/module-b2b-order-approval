@@ -5,10 +5,28 @@ namespace MagentoEse\B2bOrderApproval\Observer\Sales;
 
 
 class FlagOrderApproval implements \Magento\Framework\Event\ObserverInterface {
-    protected $currentCustomer;
-    protected $order;
-    protected $_messageManager;
 
+    /**
+     * @var \Magento\Customer\Helper\Session\CurrentCustomer
+     */
+    protected $currentCustomer;
+
+    /**
+     * @var \Magento\Sales\Model\OrderFactory
+     */
+    protected $order;
+
+    /**
+     * @var \Magento\Framework\Message\ManagerInterface
+     */
+    protected $messageManager;
+
+    /**
+     * FlagOrderApproval constructor.
+     * @param \Magento\Customer\Helper\Session\CurrentCustomer $currentCustomer
+     * @param \Magento\Sales\Model\OrderFactory $order
+     * @param \Magento\Framework\Message\ManagerInterface $messageManager
+     */
     public function __construct(
         \Magento\Customer\Helper\Session\CurrentCustomer $currentCustomer,
         \Magento\Sales\Model\OrderFactory $order,
@@ -41,9 +59,5 @@ class FlagOrderApproval implements \Magento\Framework\Event\ObserverInterface {
                 }
             }
         }
-
-
-        $t=1;
-
     }
 }
