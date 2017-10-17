@@ -53,7 +53,7 @@ class Customers
         foreach ($customerFixtures as $fileName) {
             $fileName = $this->fixtureManager->getFixture($fileName);
             if (!file_exists($fileName)) {
-                continue;
+                throw new Exception('File not found: '.$fileName);
             }
             $rows = $this->csvReader->getData($fileName);
             $header = array_shift($rows);
