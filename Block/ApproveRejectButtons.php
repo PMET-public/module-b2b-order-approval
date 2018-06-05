@@ -29,6 +29,9 @@ class ApproveRejectButtons extends \Magento\Framework\View\Element\Template
      */
     protected $companyAttributes;
 
+    /** @var  \Magento\Company\Api\CompanyRepositoryInterfaceFactory */
+    protected $companyRepository;
+
     /**
      * ApproveRejectButtons constructor.
      * @param \Magento\Framework\View\Element\Template\Context $context
@@ -44,7 +47,8 @@ class ApproveRejectButtons extends \Magento\Framework\View\Element\Template
         \Magento\Framework\App\Http\Context $httpContext,
         array $data = [],
         \Magento\Customer\Helper\Session\CurrentCustomer $currentCustomer,
-        \Magento\Company\Model\Customer\CompanyAttributes $companyAttributes
+        \Magento\Company\Model\Customer\CompanyAttributes $companyAttributes,
+        \Magento\Company\Api\CompanyRepositoryInterface $companyRepository
     ) {
         $this->coreRegistry = $registry;
         $this->httpContext = $httpContext;
@@ -52,6 +56,7 @@ class ApproveRejectButtons extends \Magento\Framework\View\Element\Template
         $this->_isScopePrivate = true;
         $this->currentCustomer = $currentCustomer;
         $this->companyAttributes = $companyAttributes;
+        $this->companyRepository = $companyRepository;
     }
 
     /**
@@ -61,9 +66,17 @@ class ApproveRejectButtons extends \Magento\Framework\View\Element\Template
     {
         return $this->coreRegistry->registry('current_order');
     }
+
+    /**
+     * @return \Magento\Customer\Api\Data\CustomerInterface
+     */
     public function getCustomer(){
         return  $this->currentCustomer->getCustomer();
     }
+
+    /**
+     * @return bool
+     */
     public function needsApproval(){
         $orderStatus = $this->getOrder()->getStatus();
         if ($orderStatus=='needs_approval'){
@@ -77,7 +90,11 @@ class ApproveRejectButtons extends \Magento\Framework\View\Element\Template
      * @return bool
      */
     public function isApprover(){
-        if($this->companyAttributes->getCompanyAttributesByCustomer($this->getCustomer())->getIsSuperUser()){
+
+        $userId  = $this->companyAttributes->getCompanyAttributesByCustomer($this->getCustomer())->getCompanyId();
+        $company = $this->companyRepository->get($this->companyAttributes->getCompanyAttributesByCustomer($this->getCustomer())->getCompanyId());
+        $superUserId = $company->getSuperUserId();
+        if($this->getCustomer()->getId() == $superUserId){
             return true;
         } else {
             return false;
