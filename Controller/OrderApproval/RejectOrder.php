@@ -8,8 +8,11 @@
 
 namespace MagentoEse\B2bOrderApproval\Controller\OrderApproval;
 
+use MagentoEse\B2bOrderApproval\Model\ProcessApproval;
+
 class RejectOrder extends \Magento\Framework\App\Action\Action
 {
+
     /**
      * @var \Magento\Framework\App\Action\Context
      */
@@ -21,25 +24,25 @@ class RejectOrder extends \Magento\Framework\App\Action\Action
     protected $resultPageFactory;
 
     /**
-     * @var \Magento\Sales\Model\OrderFactory
+     * @var ProcessApproval
      */
-    protected $orderFactory;
+
+    protected $ProcessApproval;
 
     /**
-     * RejectOrder constructor.
+     * ApproveOrder constructor.
      * @param \Magento\Framework\App\Action\Context $context
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
-     * @param \Magento\Sales\Model\OrderFactory $orderFactory
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \Magento\Sales\Model\OrderFactory $orderFactory
+        ProcessApproval $processApproval
 
     ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
-        $this->orderFactory = $orderFactory;
+        $this->processApproval = $processApproval;
 
     }
 
@@ -47,12 +50,7 @@ class RejectOrder extends \Magento\Framework\App\Action\Action
     {
         $orderId = $this->getRequest()->getParam('order_id');
         $comments = $this->getRequest()->getParam('comments');
-        $order = $this->orderFactory->create();
-        $order->load($orderId);
-        $order->setStatus('rejected');
-        $order->setState('canceled');
-        $order->addStatusHistoryComment(__('Your order has been rejected: ').$comments)->setIsVisibleOnFront(true)->setIsCustomerNotified();
-        $order->save();
+        $this->processApproval->reject($orderId,$comments);
         $this->_redirect('sales/order/view/order_id/'.$orderId);
     }
 }
