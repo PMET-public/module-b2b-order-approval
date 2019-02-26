@@ -1,14 +1,22 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace MagentoEse\B2bOrderApproval\Setup;
 
-use Magento\Framework\Setup;
+namespace MagentoEse\B2bOrderApproval\Setup\Patch\Data;
 
-class Installer implements Setup\SampleData\InstallerInterface
+
+use Magento\Framework\Setup\Patch\DataPatchInterface;
+use Magento\Framework\Setup\Patch\PatchVersionInterface;
+use MagentoEse\B2bOrderApproval\Model\CustomerAttributes;
+use MagentoEse\B2bOrderApproval\Model\Customers;
+use MagentoEse\B2bOrderApproval\Model\OrderStatus;
+
+class OldInstallData implements DataPatchInterface, PatchVersionInterface
 {
+
+
     /**
      * @var \MagentoEse\B2BOrderApproval\Model\CustomerAttributes
      */
@@ -29,9 +37,9 @@ class Installer implements Setup\SampleData\InstallerInterface
      * @param \MagentoEse\B2bOrderApproval\Model\OrderStatus $orderStatus
      */
     public function __construct(
-        \MagentoEse\B2bOrderApproval\Model\CustomerAttributes $customerAttributeSetup,
-        \MagentoEse\B2bOrderApproval\Model\Customers $setCustomerApprovalAmount,
-        \MagentoEse\B2bOrderApproval\Model\OrderStatus $orderStatus
+        CustomerAttributes $customerAttributeSetup,
+        Customers $setCustomerApprovalAmount,
+        OrderStatus $orderStatus
     ) {
         $this->customerAttributeSetup = $customerAttributeSetup;
         $this->setCustomerApprovalAmount = $setCustomerApprovalAmount;
@@ -39,11 +47,24 @@ class Installer implements Setup\SampleData\InstallerInterface
 
     }
 
-    public function install()
+    public function apply()
     {
         $this->customerAttributeSetup->install();
-        //leave this out untill updating issue resolved, level can be added manually
-        //$this->setCustomerApprovalAmount->install(['MagentoEse_B2bOrderApproval::fixtures/0.0.1_customerUpdate.csv']);
         $this->orderStatus->install();
+    }
+
+    public static function getDependencies()
+    {
+        return [];
+    }
+
+    public function getAliases()
+    {
+        return [];
+    }
+
+    public static function getVersion()
+    {
+        return '0.0.2';
     }
 }
